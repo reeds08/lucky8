@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lucky 8 · Probabilidades y pagos en la mesa</title>
+<meta name="description" content="Lucky 8: herramienta educativa para calcular pagos y probabilidades en baccarat, ruleta, póker, blackjack, craps y sic bo. Sin dinero real. Solo +18.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121318;--bg2:#181A20;--card:#1E2329;--line:#2B3139;--gold:#F0B90B;--ivory:#EAECEF;--muted:#9AA3AE}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ivory);font-family:Roboto,system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+a{color:var(--gold)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:rgba(18,19,24,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none;color:var(--ivory)}
+.logo img{width:34px;height:34px;border-radius:9px}
+.logo b{color:var(--gold)}
+nav{display:flex;gap:18px;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--ivory)}
+.lang{display:flex;border:1px solid var(--line);border-radius:20px;overflow:hidden;flex:none}
+.lang button{background:none;border:0;color:var(--muted);padding:6px 12px;font:500 13px Roboto,sans-serif;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--gold);color:#181A20}
+.hero{padding:64px 0 40px;background:radial-gradient(900px 500px at 70% -10%,#3a2f12 0%,transparent 60%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+h1{font-size:48px;line-height:1.08;margin:0 0 16px;letter-spacing:-.5px}
+h1 span{color:var(--gold)}
+.lead{font-size:19px;color:#C9CDD3;margin:0 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#181A20;font-weight:700;text-decoration:none;padding:13px 22px;border-radius:12px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--ivory);border:1px solid var(--line)}
+.soon{font-size:12.5px;color:var(--muted);margin-top:12px}
+.phones{display:flex;gap:14px;justify-content:center}
+.phones img{width:46%;max-width:230px;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.6),0 0 0 1px rgba(240,185,11,.3)}
+.phones img:nth-child(2){margin-top:40px}
+section{padding:56px 0}
+section.alt{background:var(--bg2)}
+h2{font-size:32px;margin:0 0 8px;letter-spacing:-.3px}
+.sub{color:var(--muted);margin:0 0 30px;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card h3{margin:0 0 10px;font-size:19px;display:flex;align-items:center;gap:10px}
+.card h3 i{font-style:normal;width:34px;height:34px;border-radius:10px;background:rgba(240,185,11,.14);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px}
+.card ul{margin:0;padding-left:18px;color:#C9CDD3;font-size:14.5px}
+.card li{margin-bottom:5px}
+.shots{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.shots img{height:440px;border-radius:16px;scroll-snap-align:start;flex:none;border:1px solid var(--line)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.steps .card{position:relative;padding-top:52px}
+.steps .card:before{counter-increment:s;content:counter(s);position:absolute;top:16px;left:20px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#181A20;font-weight:800;display:flex;align-items:center;justify-content:center}
+.steps p{margin:0;color:#C9CDD3;font-size:15px}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plans .card.full{border-color:var(--gold)}
+.plans>*,.price>*{min-width:0}
+.price{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.price div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center;font-size:12.5px;color:var(--muted)}
+.price b{display:block;color:var(--ivory);font-size:15px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:500;font-size:16px}
+details p{margin:10px 0 0;color:#C9CDD3}
+.rg{border:1px solid var(--gold);border-radius:16px;padding:22px;background:rgba(240,185,11,.06)}
+.rg ul{margin:8px 0 0;padding-left:18px;color:#C9CDD3}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--muted)}
+.contact{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:820px){
+ nav{display:none}
+ .hero{padding:36px 0 20px}
+ .hero .wrap,.plans{grid-template-columns:1fr}
+ h1{font-size:34px}
+ .lead{font-size:17px}
+ .grid,.steps{grid-template-columns:1fr}
+ .shots img{height:360px}
+ h2{font-size:26px}
+ section{padding:40px 0}
+ .price{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <a class="logo" href="#"><img src="img/icono.png" alt="">Lucky&nbsp;<b>8</b></a>
+ <nav><a href="#juegos" data-t="nGames"></a><a href="#como" data-t="nHow"></a><a href="#planes" data-t="nPlans"></a><a href="#faq" data-t="nFaq"></a><a href="#contacto" data-t="nContact"></a></nav>
+ <div class="lang"><button data-lg="es">ES</button><button data-lg="en">EN</button></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+ <div>
+  <h1 data-t="h1"></h1>
+  <p class="lead" data-t="lead"></p>
+  <div class="cta"><a class="btn" id="play" href="#contacto"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3.5v17a1 1 0 0 0 1.5.87L20 12.87a1 1 0 0 0 0-1.74L5.5 2.63A1 1 0 0 0 4 3.5z"/></svg><span data-t="play"></span></a><a class="btn ghost" href="#juegos" data-t="see"></a></div>
+  <div class="soon" data-t="soon"></div>
+ </div>
+ <div class="phones"><img data-img="5" alt=""><img data-img="3" alt=""></div>
+</div></div>
+
+<section id="juegos"><div class="wrap">
+ <h2 data-t="gT"></h2><p class="sub" data-t="gS"></p>
+ <div class="grid" id="games"></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+ <h2 data-t="sT"></h2><p class="sub" data-t="sS"></p>
+ <div class="shots" id="shots"></div>
+</div></section>
+
+<section id="como"><div class="wrap">
+ <h2 data-t="hT"></h2><p class="sub" data-t="hS"></p>
+ <div class="steps"><div class="card"><p data-t="h1s"></p></div><div class="card"><p data-t="h2s"></p></div><div class="card"><p data-t="h3s"></p></div></div>
+</div></section>
+
+<section id="planes" class="alt"><div class="wrap">
+ <h2 data-t="pT"></h2><p class="sub" data-t="pS"></p>
+ <div class="plans">
+  <div class="card"><h3 data-t="fT"></h3><ul data-list="fL"></ul></div>
+  <div class="card full"><h3 data-t="cT"></h3><ul data-list="cL"></ul>
+   <div class="price"><div><b>US$0.99</b><span data-t="p1"></span></div><div><b>US$1.99</b><span data-t="p2"></span></div><div><b>US$4.99</b><span data-t="p3"></span></div><div><b>US$19.99</b><span data-t="p4"></span></div><div><b>US$29.99</b><span data-t="p5"></span></div></div>
+   <p class="soon" data-t="pN"></p></div>
+ </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+ <h2 data-t="qT"></h2><p class="sub"></p>
+ <div id="faqs"></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+ <div class="rg"><h2 data-t="rT"></h2><ul data-list="rL"></ul></div>
+</div></section>
+
+<section id="contacto"><div class="wrap contact">
+ <div><h2 data-t="kT"></h2><p class="sub" style="margin:0" data-t="kS"></p></div>
+ <a class="btn" href="mailto:christianduc.trd@gmail.com?subject=Lucky%208">christianduc.trd@gmail.com</a>
+</div></section>
+
+<footer><div class="wrap">
+ <div>© 2026 Lucky 8 · Christian David Useche Camargo · <span data-t="foot"></span></div>
+ <div><a href="privacidad.html" data-t="priv"></a> · <a href="terminos.html" data-t="terms"></a></div>
+</div></footer>
+
+<script>
+var T = {
+es: {
+ nGames:'Juegos', nHow:'Cómo se usa', nPlans:'Versiones', nFaq:'Preguntas', nContact:'Contacto',
+ h1:'Probabilidades y pagos <span>en la mesa</span>',
+ lead:'Lucky 8 es una herramienta educativa: anotas lo que sale, ves las estadísticas al instante y calculas pagos y probabilidades en seis juegos.',
+ play:'Próximamente en Google Play', see:'Ver qué hace', soon:'Sin dinero real · Solo para mayores de 18 años · 12 idiomas',
+ gT:'Seis juegos, una sola app', gS:'Cada juego con sus propias herramientas.',
+ sT:'Así se ve', sS:'Diseño oscuro y claro, vertical u horizontal.',
+ hT:'Cómo se usa', hS:'No necesitas cuenta ni internet.',
+ h1s:'Elige el juego en el inicio. Cada uno tiene un tutorial corto de cómo usarlo.',
+ h2s:'Anota lo que sale en la mesa: resultados, números, cartas o dados.',
+ h3s:'Mira las estadísticas, las sugerencias y cuánto te deben pagar.',
+ pT:'Gratis y versión completa', pS:'Empieza gratis y desbloquea más cuando quieras.',
+ fT:'Gratis', fL:['Los seis juegos con sus funciones básicas.','En cada juego, hasta 3 videos al día para usar todas las funciones durante unas jugadas.','Un anuncio pequeño en la parte de abajo.'],
+ cT:'Versión completa', cL:['Todas las funciones de los seis juegos.','Sin anuncios.','Personalización completa: ruletas, paños, cartas, dados y colores.'],
+ p1:'24 horas', p2:'semana', p3:'mes', p4:'6 meses', p5:'año',
+ pN:'Precios de referencia en dólares; Google Play los muestra en la moneda de cada país. Las suscripciones se renuevan solas hasta que las canceles en Google Play.',
+ qT:'Preguntas frecuentes',
+ rT:'Juego responsable', rL:['Lucky 8 es educativa: no garantiza ganancias. En estos juegos la casa siempre tiene ventaja.','Define antes cuánto puedes gastar y no intentes recuperar lo que perdiste.','Solo para mayores de 18 años.','Si sientes que el juego dejó de ser diversión, habla con alguien de confianza o con un profesional de la salud. También puedes buscar apoyo en <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">Jugadores Anónimos</a>.'],
+ kT:'Contacto', kS:'Sugerencias, dudas o problemas: escríbenos.',
+ foot:'Herramienta educativa · Sin dinero real · Solo +18', priv:'Política de privacidad', terms:'Términos de uso',
+ games:[['♦','Baccarat',['Marcador, Big Road y caminos derivados.','Sugerencias con los métodos clásicos de patrones y con Lucky 8, nuestro método propio, con los aciertos de cada uno.','Registro libre y simulador de plan.']],
+  ['◎','Ruleta',['Europea y americana; anota en la rueda o en el paño.','Sugerencias con vecinos y estadísticas completas.','Calculadora de pagos: pon tus fichas, marca el número y mira cuánto te deben pagar.']],
+  ['♠','Póker',['Texas Hold\'em y Omaha de 4 a 8 cartas (también Hi/Lo).','Probabilidad de ganar contra 1 a 7 rivales y de ligar cada mano.','All-in: cartas de los rivales y outs con cálculo exacto.']],
+  ['♣','Blackjack',['La jugada según las reglas de tu mesa.','Tu probabilidad de ganar con cada jugada.','Sigue la mano carta por carta y varias manos a la vez.']],
+  ['⚄','Craps',['Mesa completa con todas las apuestas.','Balance de cada tiro con el desglose de pagos.','Qué tan buena es cada apuesta según la ventaja de la casa.']],
+  ['⚂','Sic Bo',['Probabilidad y pago de cada apuesta.','Sugerencias del paño e historial de tiros.','Pagos ajustables a tu mesa.']]],
+ faqs:[['¿Lucky 8 garantiza que voy a ganar?','No. Es una herramienta educativa y de estadística. Ningún método cambia la ventaja de la casa.'],
+  ['¿Se juega o se apuesta dinero en la app?','No. Lucky 8 no maneja dinero real: no permite apostar, no recibe ni paga apuestas y no está conectada a ninguna sala de juego.'],
+  ['¿Funciona sin internet?','Sí. Todo funciona dentro del celular. Solo los anuncios y las compras necesitan internet.'],
+  ['¿Qué datos guarda?','Tus anotaciones y ajustes se guardan solo en tu celular. No hay cuentas de usuario. Más detalles en la política de privacidad.'],
+  ['¿Cómo cancelo la suscripción?','Desde Google Play: Perfil → Pagos y suscripciones → Suscripciones → Lucky 8 → Cancelar.'],
+  ['¿En qué idiomas está?','Español, inglés, portugués, francés, alemán, italiano, ruso, chino, japonés, coreano, hindi e indonesio.']]
+},
+en: {
+ nGames:'Games', nHow:'How it works', nPlans:'Versions', nFaq:'FAQ', nContact:'Contact',
+ h1:'Odds and payouts <span>at the table</span>',
+ lead:'Lucky 8 is an educational tool: record what comes out, see the stats instantly and work out payouts and odds in six games.',
+ play:'Coming soon to Google Play', see:'See what it does', soon:'No real money · 18+ only · 12 languages',
+ gT:'Six games, one app', gS:'Each game with its own tools.',
+ sT:'How it looks', sS:'Dark and light design, portrait or landscape.',
+ hT:'How it works', hS:'No account or internet needed.',
+ h1s:'Pick the game on the home screen. Each one has a short tutorial.',
+ h2s:'Record what happens at the table: results, numbers, cards or dice.',
+ h3s:'See the stats, the suggestions and what you\'re owed.',
+ pT:'Free and full version', pS:'Start free and unlock more whenever you want.',
+ fT:'Free', fL:['All six games with their basic features.','In each game, up to 3 videos a day to use every feature for a few plays.','A small ad at the bottom.'],
+ cT:'Full version', cL:['Every feature in all six games.','No ads.','Full customization: wheels, layouts, cards, dice and colors.'],
+ p1:'24 hours', p2:'week', p3:'month', p4:'6 months', p5:'year',
+ pN:'Reference prices in US dollars; Google Play shows them in each country\'s currency. Subscriptions renew automatically until you cancel them in Google Play.',
+ qT:'Frequently asked questions',
+ rT:'Play responsibly', rL:['Lucky 8 is educational: it does not guarantee winnings. In these games the house always has the edge.','Decide beforehand how much you can spend and don\'t chase losses.','18+ only.','If gambling stops being fun, talk to someone you trust or a health professional. You can also find support at <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">Gamblers Anonymous</a>.'],
+ kT:'Contact', kS:'Suggestions, questions or problems: write to us.',
+ foot:'Educational tool · No real money · 18+ only', priv:'Privacy policy', terms:'Terms of use',
+ games:[['♦','Baccarat',['Bead plate, Big Road and derived roads.','Suggestions from classic pattern methods and from Lucky 8, our own method, with each one\'s hits.','Free record and plan simulator.']],
+  ['◎','Roulette',['European and American; log on the wheel or the layout.','Suggestions with neighbors and full stats.','Payout calculator: place your chips, mark the number and see what you\'re owed.']],
+  ['♠','Poker',['Texas Hold\'em and Omaha with 4 to 8 cards (Hi/Lo too).','Chance of winning against 1 to 7 opponents and of making each hand.','All-in: opponents\' cards and outs, calculated exactly.']],
+  ['♣','Blackjack',['The play for your table rules.','Your chance of winning with each play.','Follow the hand card by card and play several hands.']],
+  ['⚄','Craps',['Full table with every bet.','Balance of every roll with the payout breakdown.','How good each bet is based on the house edge.']],
+  ['⚂','Sic Bo',['Odds and payout of every bet.','Layout suggestions and roll history.','Payouts adjustable to your table.']]],
+ faqs:[['Does Lucky 8 guarantee I\'ll win?','No. It is an educational and statistics tool. No method changes the house edge.'],
+  ['Can I play or bet money in the app?','No. Lucky 8 does not handle real money: no betting, it doesn\'t take or pay bets and it isn\'t connected to any gaming venue.'],
+  ['Does it work offline?','Yes. Everything runs on your phone. Only ads and purchases need internet.'],
+  ['What data does it keep?','Your records and settings are stored only on your phone. There are no user accounts. More in the privacy policy.'],
+  ['How do I cancel my subscription?','In Google Play: Profile → Payments & subscriptions → Subscriptions → Lucky 8 → Cancel.'],
+  ['Which languages?','Spanish, English, Portuguese, French, German, Italian, Russian, Chinese, Japanese, Korean, Hindi and Indonesian.']]
+}};
+var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+function setLang(lg) {
+ var D = T[lg]; document.documentElement.lang = lg;
+ document.querySelectorAll('[data-t]').forEach(function (e) { var k = e.getAttribute('data-t'); if (D[k] != null) e.innerHTML = D[k]; });
+ document.querySelectorAll('[data-list]').forEach(function (e) { e.innerHTML = D[e.getAttribute('data-list')].map(function (x) { return '<li>' + x + '</li>'; }).join(''); });
+ document.getElementById('games').innerHTML = D.games.map(function (g) { return '<div class="card"><h3><i>' + g[0] + '</i>' + g[1] + '</h3><ul>' + g[2].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>'; }).join('');
+ document.getElementById('faqs').innerHTML = D.faqs.map(function (q) { return '<details><summary>' + esc(q[0]) + '</summary><p>' + esc(q[1]) + '</p></details>'; }).join('');
+ document.getElementById('shots').innerHTML = [1, 2, 3, 4, 5, 6, 7, 8].map(function (i) { return '<img loading="lazy" src="img/' + lg + '_' + i + '.jpg" alt="">'; }).join('');
+ document.querySelectorAll('[data-img]').forEach(function (e) { e.src = 'img/' + lg + '_' + e.getAttribute('data-img') + '.jpg'; });
+ document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lg') === lg); });
+ try { localStorage.setItem('l8lang', lg); } catch (e) {}
+}
+document.querySelectorAll('.lang button').forEach(function (b) { b.onclick = function () { setLang(b.getAttribute('data-lg')); }; });
+var saved = null; try { saved = localStorage.getItem('l8lang'); } catch (e) {}
+setLang(saved || ((navigator.language || 'es').slice(0, 2) === 'es' ? 'es' : 'en'));
+</script>
+</body>
+</html>
